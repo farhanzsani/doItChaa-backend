@@ -46,3 +46,23 @@ export type PriceEstimateHistory = Prisma.PriceEstimateHistoryModel;
  *
  */
 export type Note = Prisma.NoteModel;
+/**
+ * Model Material
+ *
+ */
+export type Material = Prisma.MaterialModel;
+/**
+ * Model BusinessSettings
+ *
+ */
+export type BusinessSettings = Prisma.BusinessSettingsModel;
+/**
+ * Model HppCalculation
+ *
+ */
+export type HppCalculation = Prisma.HppCalculationModel;
+/**
+ * Model HppMaterialUsage
+ *
+ */
+export type HppMaterialUsage = Prisma.HppMaterialUsageModel;

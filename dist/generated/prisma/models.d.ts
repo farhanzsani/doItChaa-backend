@@ -3,4 +3,8 @@ export type * from './models/Category';
 export type * from './models/Task';
 export type * from './models/PriceEstimateHistory';
 export type * from './models/Note';
+export type * from './models/Material';
+export type * from './models/BusinessSettings';
+export type * from './models/HppCalculation';
+export type * from './models/HppMaterialUsage';
 export type * from './commonInputTypes';

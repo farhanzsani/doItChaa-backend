@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { AuthRequest } from '../../common/types';
 import { hppService } from './hpp.service';
 import { calculateHppSchema, queryHppSchema } from './hpp.schema';
 
 export class HppController {
-  async calculateHpp(req: Request, res: Response, next: NextFunction) {
+  async calculateHpp(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const validatedData = calculateHppSchema.parse(req.body);
@@ -19,7 +20,7 @@ export class HppController {
     }
   }
 
-  async saveHppCalculation(req: Request, res: Response, next: NextFunction) {
+  async saveHppCalculation(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const validatedData = calculateHppSchema.parse(req.body);
@@ -35,7 +36,7 @@ export class HppController {
     }
   }
 
-  async getHppCalculations(req: Request, res: Response, next: NextFunction) {
+  async getHppCalculations(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const query = queryHppSchema.parse(req.query);
@@ -52,10 +53,10 @@ export class HppController {
     }
   }
 
-  async getHppCalculationById(req: Request, res: Response, next: NextFunction) {
+  async getHppCalculationById(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params['id'] as string;
 
       const result = await hppService.getHppCalculationById(userId, id);
 
@@ -68,10 +69,10 @@ export class HppController {
     }
   }
 
-  async deleteHppCalculation(req: Request, res: Response, next: NextFunction) {
+  async deleteHppCalculation(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params['id'] as string;
 
       const result = await hppService.deleteHppCalculation(userId, id);
 

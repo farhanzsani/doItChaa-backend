@@ -1,4 +1,4 @@
-import { prisma } from '../../config/database';
+import { prisma } from '../../config/prisma';
 import { CalculateHppInput, QueryHppInput } from './hpp.schema';
 import { NotFoundError, ValidationError } from '../../common/errors';
 import { settingsService } from '../settings/settings.service';
@@ -26,7 +26,7 @@ export class HppService {
     // Calculate total material cost
     let totalMaterialCost = 0;
     const materialUsages = materials.map((usage) => {
-      const material = foundMaterials.find((m) => m.id === usage.materialId);
+      const material = foundMaterials.find((m: any) => m.id === usage.materialId);
       if (!material) {
         throw new NotFoundError(`Material ${usage.materialId} not found`);
       }

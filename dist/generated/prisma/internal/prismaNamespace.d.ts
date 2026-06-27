@@ -236,6 +236,10 @@ export declare const ModelName: {
     readonly Task: "Task";
     readonly PriceEstimateHistory: "PriceEstimateHistory";
     readonly Note: "Note";
+    readonly Material: "Material";
+    readonly BusinessSettings: "BusinessSettings";
+    readonly HppCalculation: "HppCalculation";
+    readonly HppMaterialUsage: "HppMaterialUsage";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -248,7 +252,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "category" | "task" | "priceEstimateHistory" | "note";
+        modelProps: "user" | "category" | "task" | "priceEstimateHistory" | "note" | "material" | "businessSettings" | "hppCalculation" | "hppMaterialUsage";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -622,6 +626,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        Material: {
+            payload: Prisma.$MaterialPayload<ExtArgs>;
+            fields: Prisma.MaterialFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.MaterialFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.MaterialFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                findFirst: {
+                    args: Prisma.MaterialFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.MaterialFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                findMany: {
+                    args: Prisma.MaterialFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[];
+                };
+                create: {
+                    args: Prisma.MaterialCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                createMany: {
+                    args: Prisma.MaterialCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.MaterialCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[];
+                };
+                delete: {
+                    args: Prisma.MaterialDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                update: {
+                    args: Prisma.MaterialUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.MaterialDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.MaterialUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.MaterialUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[];
+                };
+                upsert: {
+                    args: Prisma.MaterialUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>;
+                };
+                aggregate: {
+                    args: Prisma.MaterialAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateMaterial>;
+                };
+                groupBy: {
+                    args: Prisma.MaterialGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.MaterialGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.MaterialCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.MaterialCountAggregateOutputType> | number;
+                };
+            };
+        };
+        BusinessSettings: {
+            payload: Prisma.$BusinessSettingsPayload<ExtArgs>;
+            fields: Prisma.BusinessSettingsFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.BusinessSettingsFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.BusinessSettingsFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                findFirst: {
+                    args: Prisma.BusinessSettingsFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.BusinessSettingsFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                findMany: {
+                    args: Prisma.BusinessSettingsFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>[];
+                };
+                create: {
+                    args: Prisma.BusinessSettingsCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                createMany: {
+                    args: Prisma.BusinessSettingsCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.BusinessSettingsCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>[];
+                };
+                delete: {
+                    args: Prisma.BusinessSettingsDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                update: {
+                    args: Prisma.BusinessSettingsUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.BusinessSettingsDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.BusinessSettingsUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.BusinessSettingsUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>[];
+                };
+                upsert: {
+                    args: Prisma.BusinessSettingsUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessSettingsPayload>;
+                };
+                aggregate: {
+                    args: Prisma.BusinessSettingsAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateBusinessSettings>;
+                };
+                groupBy: {
+                    args: Prisma.BusinessSettingsGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BusinessSettingsGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.BusinessSettingsCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BusinessSettingsCountAggregateOutputType> | number;
+                };
+            };
+        };
+        HppCalculation: {
+            payload: Prisma.$HppCalculationPayload<ExtArgs>;
+            fields: Prisma.HppCalculationFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.HppCalculationFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.HppCalculationFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                findFirst: {
+                    args: Prisma.HppCalculationFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.HppCalculationFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                findMany: {
+                    args: Prisma.HppCalculationFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>[];
+                };
+                create: {
+                    args: Prisma.HppCalculationCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                createMany: {
+                    args: Prisma.HppCalculationCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.HppCalculationCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>[];
+                };
+                delete: {
+                    args: Prisma.HppCalculationDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                update: {
+                    args: Prisma.HppCalculationUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.HppCalculationDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.HppCalculationUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.HppCalculationUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>[];
+                };
+                upsert: {
+                    args: Prisma.HppCalculationUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppCalculationPayload>;
+                };
+                aggregate: {
+                    args: Prisma.HppCalculationAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateHppCalculation>;
+                };
+                groupBy: {
+                    args: Prisma.HppCalculationGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HppCalculationGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.HppCalculationCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HppCalculationCountAggregateOutputType> | number;
+                };
+            };
+        };
+        HppMaterialUsage: {
+            payload: Prisma.$HppMaterialUsagePayload<ExtArgs>;
+            fields: Prisma.HppMaterialUsageFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.HppMaterialUsageFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.HppMaterialUsageFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                findFirst: {
+                    args: Prisma.HppMaterialUsageFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.HppMaterialUsageFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                findMany: {
+                    args: Prisma.HppMaterialUsageFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>[];
+                };
+                create: {
+                    args: Prisma.HppMaterialUsageCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                createMany: {
+                    args: Prisma.HppMaterialUsageCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.HppMaterialUsageCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>[];
+                };
+                delete: {
+                    args: Prisma.HppMaterialUsageDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                update: {
+                    args: Prisma.HppMaterialUsageUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                deleteMany: {
+                    args: Prisma.HppMaterialUsageDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.HppMaterialUsageUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.HppMaterialUsageUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>[];
+                };
+                upsert: {
+                    args: Prisma.HppMaterialUsageUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$HppMaterialUsagePayload>;
+                };
+                aggregate: {
+                    args: Prisma.HppMaterialUsageAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateHppMaterialUsage>;
+                };
+                groupBy: {
+                    args: Prisma.HppMaterialUsageGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HppMaterialUsageGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.HppMaterialUsageCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.HppMaterialUsageCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -707,6 +1007,56 @@ export declare const NoteScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum];
+export declare const MaterialScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly unit: "unit";
+    readonly price: "price";
+    readonly stock: "stock";
+    readonly description: "description";
+    readonly userId: "userId";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum];
+export declare const BusinessSettingsScalarFieldEnum: {
+    readonly id: "id";
+    readonly userId: "userId";
+    readonly profitMarginMin: "profitMarginMin";
+    readonly profitMarginMax: "profitMarginMax";
+    readonly taxPercentage: "taxPercentage";
+    readonly laborCostPerHour: "laborCostPerHour";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type BusinessSettingsScalarFieldEnum = (typeof BusinessSettingsScalarFieldEnum)[keyof typeof BusinessSettingsScalarFieldEnum];
+export declare const HppCalculationScalarFieldEnum: {
+    readonly id: "id";
+    readonly productName: "productName";
+    readonly totalMaterialCost: "totalMaterialCost";
+    readonly totalLaborCost: "totalLaborCost";
+    readonly estimatedHours: "estimatedHours";
+    readonly totalHpp: "totalHpp";
+    readonly profitMarginPercentage: "profitMarginPercentage";
+    readonly taxPercentage: "taxPercentage";
+    readonly sellingPriceBeforeTax: "sellingPriceBeforeTax";
+    readonly taxAmount: "taxAmount";
+    readonly finalSellingPrice: "finalSellingPrice";
+    readonly userId: "userId";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type HppCalculationScalarFieldEnum = (typeof HppCalculationScalarFieldEnum)[keyof typeof HppCalculationScalarFieldEnum];
+export declare const HppMaterialUsageScalarFieldEnum: {
+    readonly id: "id";
+    readonly hppCalculationId: "hppCalculationId";
+    readonly materialId: "materialId";
+    readonly quantity: "quantity";
+    readonly unitPrice: "unitPrice";
+    readonly totalPrice: "totalPrice";
+    readonly createdAt: "createdAt";
+};
+export type HppMaterialUsageScalarFieldEnum = (typeof HppMaterialUsageScalarFieldEnum)[keyof typeof HppMaterialUsageScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -895,6 +1245,10 @@ export type GlobalOmitConfig = {
     task?: Prisma.TaskOmit;
     priceEstimateHistory?: Prisma.PriceEstimateHistoryOmit;
     note?: Prisma.NoteOmit;
+    material?: Prisma.MaterialOmit;
+    businessSettings?: Prisma.BusinessSettingsOmit;
+    hppCalculation?: Prisma.HppCalculationOmit;
+    hppMaterialUsage?: Prisma.HppMaterialUsageOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

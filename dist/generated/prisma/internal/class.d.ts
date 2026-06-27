@@ -172,5 +172,49 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get note(): Prisma.NoteDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.material`: Exposes CRUD operations for the **Material** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Materials
+      * const materials = await prisma.material.findMany()
+      * ```
+      */
+    get material(): Prisma.MaterialDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.businessSettings`: Exposes CRUD operations for the **BusinessSettings** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more BusinessSettings
+      * const businessSettings = await prisma.businessSettings.findMany()
+      * ```
+      */
+    get businessSettings(): Prisma.BusinessSettingsDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.hppCalculation`: Exposes CRUD operations for the **HppCalculation** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more HppCalculations
+      * const hppCalculations = await prisma.hppCalculation.findMany()
+      * ```
+      */
+    get hppCalculation(): Prisma.HppCalculationDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.hppMaterialUsage`: Exposes CRUD operations for the **HppMaterialUsage** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more HppMaterialUsages
+      * const hppMaterialUsages = await prisma.hppMaterialUsage.findMany()
+      * ```
+      */
+    get hppMaterialUsage(): Prisma.HppMaterialUsageDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

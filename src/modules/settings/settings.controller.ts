@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { AuthRequest } from '../../common/types';
 import { settingsService } from './settings.service';
 import { updateSettingsSchema } from './settings.schema';
 
 export class SettingsController {
-  async getSettings(req: Request, res: Response, next: NextFunction) {
+  async getSettings(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
 
@@ -18,7 +19,7 @@ export class SettingsController {
     }
   }
 
-  async updateSettings(req: Request, res: Response, next: NextFunction) {
+  async updateSettings(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const validatedData = updateSettingsSchema.parse(req.body);

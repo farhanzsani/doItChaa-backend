@@ -98,7 +98,7 @@ export async function convertEstimateToTask(
     `Estimated Working Hours:\n${result.estimatedHours} Hours`;
 
   // Create estimate and task in a transaction
-  const [estimate, task] = await prisma.$transaction(async (tx) => {
+  const [estimate, task] = await prisma.$transaction(async (tx: any) => {
     const newEstimate = await tx.priceEstimateHistory.create({
       data: {
         productName: input.productName,

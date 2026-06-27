@@ -134,6 +134,9 @@ export type UserWhereInput = {
     tasks?: Prisma.TaskListRelationFilter;
     priceEstimates?: Prisma.PriceEstimateHistoryListRelationFilter;
     notes?: Prisma.NoteListRelationFilter;
+    materials?: Prisma.MaterialListRelationFilter;
+    businessSettings?: Prisma.XOR<Prisma.BusinessSettingsNullableScalarRelationFilter, Prisma.BusinessSettingsWhereInput> | null;
+    hppCalculations?: Prisma.HppCalculationListRelationFilter;
 };
 export type UserOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -144,6 +147,9 @@ export type UserOrderByWithRelationInput = {
     tasks?: Prisma.TaskOrderByRelationAggregateInput;
     priceEstimates?: Prisma.PriceEstimateHistoryOrderByRelationAggregateInput;
     notes?: Prisma.NoteOrderByRelationAggregateInput;
+    materials?: Prisma.MaterialOrderByRelationAggregateInput;
+    businessSettings?: Prisma.BusinessSettingsOrderByWithRelationInput;
+    hppCalculations?: Prisma.HppCalculationOrderByRelationAggregateInput;
 };
 export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -157,6 +163,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
     tasks?: Prisma.TaskListRelationFilter;
     priceEstimates?: Prisma.PriceEstimateHistoryListRelationFilter;
     notes?: Prisma.NoteListRelationFilter;
+    materials?: Prisma.MaterialListRelationFilter;
+    businessSettings?: Prisma.XOR<Prisma.BusinessSettingsNullableScalarRelationFilter, Prisma.BusinessSettingsWhereInput> | null;
+    hppCalculations?: Prisma.HppCalculationListRelationFilter;
 }, "id" | "email">;
 export type UserOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -185,6 +194,9 @@ export type UserCreateInput = {
     tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateInput = {
     id?: string;
@@ -195,6 +207,9 @@ export type UserUncheckedCreateInput = {
     tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -205,6 +220,9 @@ export type UserUpdateInput = {
     tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -215,6 +233,9 @@ export type UserUncheckedUpdateInput = {
     tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateManyInput = {
     id?: string;
@@ -310,6 +331,42 @@ export type UserUpdateOneRequiredWithoutNotesNestedInput = {
     connect?: Prisma.UserWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotesInput, Prisma.UserUpdateWithoutNotesInput>, Prisma.UserUncheckedUpdateWithoutNotesInput>;
 };
+export type UserCreateNestedOneWithoutMaterialsInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutMaterialsInput, Prisma.UserUncheckedCreateWithoutMaterialsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutMaterialsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+export type UserUpdateOneRequiredWithoutMaterialsNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutMaterialsInput, Prisma.UserUncheckedCreateWithoutMaterialsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutMaterialsInput;
+    upsert?: Prisma.UserUpsertWithoutMaterialsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMaterialsInput, Prisma.UserUpdateWithoutMaterialsInput>, Prisma.UserUncheckedUpdateWithoutMaterialsInput>;
+};
+export type UserCreateNestedOneWithoutBusinessSettingsInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessSettingsInput, Prisma.UserUncheckedCreateWithoutBusinessSettingsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessSettingsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+export type UserUpdateOneRequiredWithoutBusinessSettingsNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessSettingsInput, Prisma.UserUncheckedCreateWithoutBusinessSettingsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessSettingsInput;
+    upsert?: Prisma.UserUpsertWithoutBusinessSettingsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessSettingsInput, Prisma.UserUpdateWithoutBusinessSettingsInput>, Prisma.UserUncheckedUpdateWithoutBusinessSettingsInput>;
+};
+export type UserCreateNestedOneWithoutHppCalculationsInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutHppCalculationsInput, Prisma.UserUncheckedCreateWithoutHppCalculationsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutHppCalculationsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+export type UserUpdateOneRequiredWithoutHppCalculationsNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutHppCalculationsInput, Prisma.UserUncheckedCreateWithoutHppCalculationsInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutHppCalculationsInput;
+    upsert?: Prisma.UserUpsertWithoutHppCalculationsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutHppCalculationsInput, Prisma.UserUpdateWithoutHppCalculationsInput>, Prisma.UserUncheckedUpdateWithoutHppCalculationsInput>;
+};
 export type UserCreateWithoutCategoriesInput = {
     id?: string;
     email: string;
@@ -318,6 +375,9 @@ export type UserCreateWithoutCategoriesInput = {
     tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutCategoriesInput = {
     id?: string;
@@ -327,6 +387,9 @@ export type UserUncheckedCreateWithoutCategoriesInput = {
     tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutCategoriesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -349,6 +412,9 @@ export type UserUpdateWithoutCategoriesInput = {
     tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutCategoriesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -358,6 +424,9 @@ export type UserUncheckedUpdateWithoutCategoriesInput = {
     tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutTasksInput = {
     id?: string;
@@ -367,6 +436,9 @@ export type UserCreateWithoutTasksInput = {
     categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutTasksInput = {
     id?: string;
@@ -376,6 +448,9 @@ export type UserUncheckedCreateWithoutTasksInput = {
     categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutTasksInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -398,6 +473,9 @@ export type UserUpdateWithoutTasksInput = {
     categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutTasksInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -407,6 +485,9 @@ export type UserUncheckedUpdateWithoutTasksInput = {
     categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutPriceEstimatesInput = {
     id?: string;
@@ -416,6 +497,9 @@ export type UserCreateWithoutPriceEstimatesInput = {
     categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
     tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutPriceEstimatesInput = {
     id?: string;
@@ -425,6 +509,9 @@ export type UserUncheckedCreateWithoutPriceEstimatesInput = {
     categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
     tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
     notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutPriceEstimatesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -447,6 +534,9 @@ export type UserUpdateWithoutPriceEstimatesInput = {
     categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
     tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutPriceEstimatesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -456,6 +546,9 @@ export type UserUncheckedUpdateWithoutPriceEstimatesInput = {
     categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
     tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
     notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutNotesInput = {
     id?: string;
@@ -465,6 +558,9 @@ export type UserCreateWithoutNotesInput = {
     categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
     tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutNotesInput = {
     id?: string;
@@ -474,6 +570,9 @@ export type UserUncheckedCreateWithoutNotesInput = {
     categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
     tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutNotesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -496,6 +595,9 @@ export type UserUpdateWithoutNotesInput = {
     categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
     tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutNotesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -505,6 +607,192 @@ export type UserUncheckedUpdateWithoutNotesInput = {
     categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
     tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
     priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
+};
+export type UserCreateWithoutMaterialsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
+};
+export type UserUncheckedCreateWithoutMaterialsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
+};
+export type UserCreateOrConnectWithoutMaterialsInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutMaterialsInput, Prisma.UserUncheckedCreateWithoutMaterialsInput>;
+};
+export type UserUpsertWithoutMaterialsInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutMaterialsInput, Prisma.UserUncheckedUpdateWithoutMaterialsInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutMaterialsInput, Prisma.UserUncheckedCreateWithoutMaterialsInput>;
+    where?: Prisma.UserWhereInput;
+};
+export type UserUpdateToOneWithWhereWithoutMaterialsInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutMaterialsInput, Prisma.UserUncheckedUpdateWithoutMaterialsInput>;
+};
+export type UserUpdateWithoutMaterialsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
+};
+export type UserUncheckedUpdateWithoutMaterialsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
+};
+export type UserCreateWithoutBusinessSettingsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationCreateNestedManyWithoutUserInput;
+};
+export type UserUncheckedCreateWithoutBusinessSettingsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedCreateNestedManyWithoutUserInput;
+};
+export type UserCreateOrConnectWithoutBusinessSettingsInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutBusinessSettingsInput, Prisma.UserUncheckedCreateWithoutBusinessSettingsInput>;
+};
+export type UserUpsertWithoutBusinessSettingsInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessSettingsInput, Prisma.UserUncheckedUpdateWithoutBusinessSettingsInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutBusinessSettingsInput, Prisma.UserUncheckedCreateWithoutBusinessSettingsInput>;
+    where?: Prisma.UserWhereInput;
+};
+export type UserUpdateToOneWithWhereWithoutBusinessSettingsInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessSettingsInput, Prisma.UserUncheckedUpdateWithoutBusinessSettingsInput>;
+};
+export type UserUpdateWithoutBusinessSettingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUpdateManyWithoutUserNestedInput;
+};
+export type UserUncheckedUpdateWithoutBusinessSettingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    hppCalculations?: Prisma.HppCalculationUncheckedUpdateManyWithoutUserNestedInput;
+};
+export type UserCreateWithoutHppCalculationsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsCreateNestedOneWithoutUserInput;
+};
+export type UserUncheckedCreateWithoutHppCalculationsInput = {
+    id?: string;
+    email: string;
+    password: string;
+    createdAt?: Date | string;
+    categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput;
+    tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedCreateNestedManyWithoutUserInput;
+    notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUserInput;
+    materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutUserInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedCreateNestedOneWithoutUserInput;
+};
+export type UserCreateOrConnectWithoutHppCalculationsInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutHppCalculationsInput, Prisma.UserUncheckedCreateWithoutHppCalculationsInput>;
+};
+export type UserUpsertWithoutHppCalculationsInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutHppCalculationsInput, Prisma.UserUncheckedUpdateWithoutHppCalculationsInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutHppCalculationsInput, Prisma.UserUncheckedCreateWithoutHppCalculationsInput>;
+    where?: Prisma.UserWhereInput;
+};
+export type UserUpdateToOneWithWhereWithoutHppCalculationsInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutHppCalculationsInput, Prisma.UserUncheckedUpdateWithoutHppCalculationsInput>;
+};
+export type UserUpdateWithoutHppCalculationsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUpdateOneWithoutUserNestedInput;
+};
+export type UserUncheckedUpdateWithoutHppCalculationsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput;
+    tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput;
+    priceEstimates?: Prisma.PriceEstimateHistoryUncheckedUpdateManyWithoutUserNestedInput;
+    notes?: Prisma.NoteUncheckedUpdateManyWithoutUserNestedInput;
+    materials?: Prisma.MaterialUncheckedUpdateManyWithoutUserNestedInput;
+    businessSettings?: Prisma.BusinessSettingsUncheckedUpdateOneWithoutUserNestedInput;
 };
 /**
  * Count Type UserCountOutputType
@@ -514,12 +802,16 @@ export type UserCountOutputType = {
     tasks: number;
     priceEstimates: number;
     notes: number;
+    materials: number;
+    hppCalculations: number;
 };
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     categories?: boolean | UserCountOutputTypeCountCategoriesArgs;
     tasks?: boolean | UserCountOutputTypeCountTasksArgs;
     priceEstimates?: boolean | UserCountOutputTypeCountPriceEstimatesArgs;
     notes?: boolean | UserCountOutputTypeCountNotesArgs;
+    materials?: boolean | UserCountOutputTypeCountMaterialsArgs;
+    hppCalculations?: boolean | UserCountOutputTypeCountHppCalculationsArgs;
 };
 /**
  * UserCountOutputType without action
@@ -554,6 +846,18 @@ export type UserCountOutputTypeCountPriceEstimatesArgs<ExtArgs extends runtime.T
 export type UserCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.NoteWhereInput;
 };
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.MaterialWhereInput;
+};
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountHppCalculationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.HppCalculationWhereInput;
+};
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     email?: boolean;
@@ -563,6 +867,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>;
     priceEstimates?: boolean | Prisma.User$priceEstimatesArgs<ExtArgs>;
     notes?: boolean | Prisma.User$notesArgs<ExtArgs>;
+    materials?: boolean | Prisma.User$materialsArgs<ExtArgs>;
+    businessSettings?: boolean | Prisma.User$businessSettingsArgs<ExtArgs>;
+    hppCalculations?: boolean | Prisma.User$hppCalculationsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -589,6 +896,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>;
     priceEstimates?: boolean | Prisma.User$priceEstimatesArgs<ExtArgs>;
     notes?: boolean | Prisma.User$notesArgs<ExtArgs>;
+    materials?: boolean | Prisma.User$materialsArgs<ExtArgs>;
+    businessSettings?: boolean | Prisma.User$businessSettingsArgs<ExtArgs>;
+    hppCalculations?: boolean | Prisma.User$hppCalculationsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -600,6 +910,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
         tasks: Prisma.$TaskPayload<ExtArgs>[];
         priceEstimates: Prisma.$PriceEstimateHistoryPayload<ExtArgs>[];
         notes: Prisma.$NotePayload<ExtArgs>[];
+        materials: Prisma.$MaterialPayload<ExtArgs>[];
+        businessSettings: Prisma.$BusinessSettingsPayload<ExtArgs> | null;
+        hppCalculations: Prisma.$HppCalculationPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -939,6 +1252,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
     tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     priceEstimates<T extends Prisma.User$priceEstimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$priceEstimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PriceEstimateHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    materials<T extends Prisma.User$materialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    businessSettings<T extends Prisma.User$businessSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessSettingsArgs<ExtArgs>>): Prisma.Prisma__BusinessSettingsClient<runtime.Types.Result.GetResult<Prisma.$BusinessSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    hppCalculations<T extends Prisma.User$hppCalculationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$hppCalculationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HppCalculationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1434,6 +1750,70 @@ export type User$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
     take?: number;
     skip?: number;
     distinct?: Prisma.NoteScalarFieldEnum | Prisma.NoteScalarFieldEnum[];
+};
+/**
+ * User.materials
+ */
+export type User$materialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: Prisma.MaterialSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: Prisma.MaterialOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.MaterialInclude<ExtArgs> | null;
+    where?: Prisma.MaterialWhereInput;
+    orderBy?: Prisma.MaterialOrderByWithRelationInput | Prisma.MaterialOrderByWithRelationInput[];
+    cursor?: Prisma.MaterialWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.MaterialScalarFieldEnum | Prisma.MaterialScalarFieldEnum[];
+};
+/**
+ * User.businessSettings
+ */
+export type User$businessSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessSettings
+     */
+    select?: Prisma.BusinessSettingsSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BusinessSettings
+     */
+    omit?: Prisma.BusinessSettingsOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BusinessSettingsInclude<ExtArgs> | null;
+    where?: Prisma.BusinessSettingsWhereInput;
+};
+/**
+ * User.hppCalculations
+ */
+export type User$hppCalculationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HppCalculation
+     */
+    select?: Prisma.HppCalculationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the HppCalculation
+     */
+    omit?: Prisma.HppCalculationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.HppCalculationInclude<ExtArgs> | null;
+    where?: Prisma.HppCalculationWhereInput;
+    orderBy?: Prisma.HppCalculationOrderByWithRelationInput | Prisma.HppCalculationOrderByWithRelationInput[];
+    cursor?: Prisma.HppCalculationWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.HppCalculationScalarFieldEnum | Prisma.HppCalculationScalarFieldEnum[];
 };
 /**
  * User without action

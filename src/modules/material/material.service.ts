@@ -1,4 +1,4 @@
-import { prisma } from '../../config/database';
+import { prisma } from '../../config/prisma';
 import { CreateMaterialInput, UpdateMaterialInput, QueryMaterialsInput } from './material.schema';
 import { ForbiddenError, NotFoundError, ValidationError } from '../../common/errors';
 

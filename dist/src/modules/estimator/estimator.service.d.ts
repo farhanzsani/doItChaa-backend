@@ -19,31 +19,8 @@ export declare function saveEstimate(userId: string, input: SaveEstimateInput): 
     maximumRecommendedPrice: number;
 }>;
 export declare function convertEstimateToTask(userId: string, input: ConvertToTaskInput): Promise<{
-    estimate: {
-        id: string;
-        createdAt: Date;
-        userId: string;
-        productName: string;
-        sizeCm: number;
-        complexity: import("../../../generated/prisma/enums").Complexity;
-        estimatedHours: number;
-        estimatedMaterialCost: number;
-        minimumRecommendedPrice: number;
-        maximumRecommendedPrice: number;
-    };
-    task: {
-        status: import("../../../generated/prisma/enums").TaskStatus;
-        priority: import("../../../generated/prisma/enums").Priority;
-        id: string;
-        createdAt: Date;
-        title: string;
-        description: string | null;
-        deadline: Date | null;
-        category: {
-            id: string;
-            name: string;
-        } | null;
-    };
+    estimate: any;
+    task: any;
 }>;
 export declare function getEstimateHistory(userId: string, pageStr?: string, limitStr?: string): Promise<{
     estimates: {

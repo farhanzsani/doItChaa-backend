@@ -1,4 +1,4 @@
-import { prisma } from '../../config/database';
+import { prisma } from '../../config/prisma';
 import { UpdateSettingsInput } from './settings.schema';
 import { ValidationError } from '../../common/errors';
 

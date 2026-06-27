@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.NoteScalarFieldEnum = exports.PriceEstimateHistoryScalarFieldEnum = exports.TaskScalarFieldEnum = exports.CategoryScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.HppMaterialUsageScalarFieldEnum = exports.HppCalculationScalarFieldEnum = exports.BusinessSettingsScalarFieldEnum = exports.MaterialScalarFieldEnum = exports.NoteScalarFieldEnum = exports.PriceEstimateHistoryScalarFieldEnum = exports.TaskScalarFieldEnum = exports.CategoryScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 /**
  * Prisma Errors
@@ -107,7 +107,11 @@ exports.ModelName = {
     Category: 'Category',
     Task: 'Task',
     PriceEstimateHistory: 'PriceEstimateHistory',
-    Note: 'Note'
+    Note: 'Note',
+    Material: 'Material',
+    BusinessSettings: 'BusinessSettings',
+    HppCalculation: 'HppCalculation',
+    HppMaterialUsage: 'HppMaterialUsage'
 };
 /**
  * Enums
@@ -163,6 +167,52 @@ exports.NoteScalarFieldEnum = {
     userId: 'userId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
+};
+exports.MaterialScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    unit: 'unit',
+    price: 'price',
+    stock: 'stock',
+    description: 'description',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.BusinessSettingsScalarFieldEnum = {
+    id: 'id',
+    userId: 'userId',
+    profitMarginMin: 'profitMarginMin',
+    profitMarginMax: 'profitMarginMax',
+    taxPercentage: 'taxPercentage',
+    laborCostPerHour: 'laborCostPerHour',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.HppCalculationScalarFieldEnum = {
+    id: 'id',
+    productName: 'productName',
+    totalMaterialCost: 'totalMaterialCost',
+    totalLaborCost: 'totalLaborCost',
+    estimatedHours: 'estimatedHours',
+    totalHpp: 'totalHpp',
+    profitMarginPercentage: 'profitMarginPercentage',
+    taxPercentage: 'taxPercentage',
+    sellingPriceBeforeTax: 'sellingPriceBeforeTax',
+    taxAmount: 'taxAmount',
+    finalSellingPrice: 'finalSellingPrice',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.HppMaterialUsageScalarFieldEnum = {
+    id: 'id',
+    hppCalculationId: 'hppCalculationId',
+    materialId: 'materialId',
+    quantity: 'quantity',
+    unitPrice: 'unitPrice',
+    totalPrice: 'totalPrice',
+    createdAt: 'createdAt'
 };
 exports.SortOrder = {
     asc: 'asc',

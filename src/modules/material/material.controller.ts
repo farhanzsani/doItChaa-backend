@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { AuthRequest } from '../../common/types';
 import { materialService } from './material.service';
 import {
   createMaterialSchema,
@@ -7,7 +8,7 @@ import {
 } from './material.schema';
 
 export class MaterialController {
-  async createMaterial(req: Request, res: Response, next: NextFunction) {
+  async createMaterial(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const validatedData = createMaterialSchema.parse(req.body);
@@ -23,7 +24,7 @@ export class MaterialController {
     }
   }
 
-  async getMaterials(req: Request, res: Response, next: NextFunction) {
+  async getMaterials(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
       const query = queryMaterialsSchema.parse(req.query);
@@ -40,10 +41,10 @@ export class MaterialController {
     }
   }
 
-  async getMaterialById(req: Request, res: Response, next: NextFunction) {
+  async getMaterialById(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params['id'] as string;
 
       const material = await materialService.getMaterialById(userId, id);
 
@@ -56,10 +57,10 @@ export class MaterialController {
     }
   }
 
-  async updateMaterial(req: Request, res: Response, next: NextFunction) {
+  async updateMaterial(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params['id'] as string;
       const validatedData = updateMaterialSchema.parse(req.body);
 
       const material = await materialService.updateMaterial(userId, id, validatedData);
@@ -73,10 +74,10 @@ export class MaterialController {
     }
   }
 
-  async deleteMaterial(req: Request, res: Response, next: NextFunction) {
+  async deleteMaterial(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = req.params['id'] as string;
 
       const result = await materialService.deleteMaterial(userId, id);
 
