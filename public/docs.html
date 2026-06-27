@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Do It Cha — API Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #6C63FF;
+      --primary-dark: #574FD6;
+      --accent: #43D9AD;
+      --bg: #0F0E17;
+      --bg-card: #13121F;
+      --bg-card2: #1A1928;
+      --text: #FFFFFE;
+      --text-muted: #A7A9BE;
+      --border: #2E2B4A;
+      --danger: #f93e3e;
+      --success: #49cc90;
+      --warning: #fca130;
+      --info: #61affe;
+      --sidebar-width: 280px;
+      --topbar-height: 56px;
+    }
+
+    html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
+
+    /* ── Topbar ── */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--topbar-height);
+      background: #0A0910;
+      border-bottom: 2px solid var(--primary);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 200;
+    }
+
+    .topbar-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .topbar-logo {
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--primary); letter-spacing: -0.5px;
+    }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-badge {
+      font-size: 0.65rem; font-weight: 700;
+      background: var(--primary); color: #fff;
+      padding: 2px 7px; border-radius: 4px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+    #search-input {
+      background: var(--bg-card2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 6px 12px; font-size: 0.82rem; width: 220px;
+      outline: none; transition: border-color 0.2s;
+    }
+    #search-input:focus { border-color: var(--primary); }
+    #search-input::placeholder { color: #4A4866; }
+
+    .btn-logout {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px;
+      background: transparent; color: var(--danger);
+      border: 1px solid var(--danger); border-radius: 6px;
+      font-size: 0.8rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-logout:hover { background: rgba(249,62,62,0.12); }
+
+    /* ── Layout ── */
+    #layout {
+      display: flex;
+      padding-top: var(--topbar-height);
+      height: 100%;
+    }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      height: calc(100vh - var(--topbar-height));
+      position: fixed;
+      top: var(--topbar-height);
+      left: 0;
+    }
+
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-track { background: transparent; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .sidebar-section { padding: 16px 0 8px; }
+    .sidebar-section-title {
+      font-size: 0.68rem; font-weight: 700;
+      color: #4A4866; text-transform: uppercase;
+      letter-spacing: 0.1em; padding: 0 16px 6px;
+    }
+
+    .tag-group { margin-bottom: 4px; }
+    .tag-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 8px 16px; color: var(--text);
+      font-size: 0.85rem; font-weight: 600;
+      text-align: left; transition: background 0.15s;
+      border-left: 3px solid transparent;
+    }
+    .tag-btn:hover { background: var(--bg-card2); }
+    .tag-btn.active { border-left-color: var(--primary); background: var(--bg-card2); color: var(--primary); }
+    .tag-count {
+      font-size: 0.7rem; font-weight: 700;
+      background: var(--bg-card2); color: var(--text-muted);
+      padding: 1px 7px; border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .endpoint-list { display: none; }
+    .endpoint-list.open { display: block; }
+    .endpoint-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 16px 6px 20px;
+      cursor: pointer; transition: background 0.15s;
+      font-size: 0.78rem; color: var(--text-muted);
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .endpoint-item:hover { background: rgba(108,99,255,0.06); color: var(--text); }
+    .endpoint-item.active { background: rgba(108,99,255,0.1); color: var(--text); }
+
+    .method-badge {
+      font-size: 0.62rem; font-weight: 800;
+      padding: 2px 5px; border-radius: 3px;
+      text-transform: uppercase; letter-spacing: 0.03em;
+      flex-shrink: 0; min-width: 42px; text-align: center;
+    }
+    .method-get    { background: rgba(97,175,254,0.15); color: var(--info); }
+    .method-post   { background: rgba(73,204,144,0.15); color: var(--success); }
+    .method-put    { background: rgba(252,161,48,0.15);  color: var(--warning); }
+    .method-patch  { background: rgba(80,227,194,0.15);  color: #50e3c2; }
+    .method-delete { background: rgba(249,62,62,0.15);   color: var(--danger); }
+
+    /* ── Main content ── */
+    #main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      overflow-y: auto;
+      height: calc(100vh - var(--topbar-height));
+      padding: 24px 32px;
+    }
+
+    #main::-webkit-scrollbar { width: 7px; }
+    #main::-webkit-scrollbar-track { background: var(--bg); }
+    #main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    #main::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    /* ── Swagger UI overrides ── */
+    #swagger-ui .swagger-ui { background: transparent !important; }
+    #swagger-ui .swagger-ui .info { display: none !important; }
+    #swagger-ui .swagger-ui .topbar { display: none !important; }
+
+    #swagger-ui .swagger-ui .scheme-container {
+      background: var(--bg-card) !important;
+      box-shadow: none !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      padding: 14px 20px !important;
+      margin-bottom: 20px !important;
+    }
+    #swagger-ui .swagger-ui .schemes > label {
+      color: var(--text-muted) !important;
+      font-size: 0.72rem !important; font-weight: 700 !important;
+      text-transform: uppercase !important; letter-spacing: 0.08em !important;
+    }
+    #swagger-ui .swagger-ui .schemes select {
+      background: var(--bg-card2) !important; color: var(--text) !important;
+      border: 1px solid var(--border) !important; border-radius: 6px !important;
+      padding: 5px 10px !important;
+    }
+
+    /* authorize button */
+    #swagger-ui .swagger-ui .btn.authorize {
+      background: transparent !important; color: var(--primary) !important;
+      border: 1px solid var(--primary) !important; border-radius: 6px !important;
+      font-weight: 600 !important; transition: all 0.2s !important;
+    }
+    #swagger-ui .swagger-ui .btn.authorize:hover { background: var(--primary) !important; color: #fff !important; }
+    #swagger-ui .swagger-ui .btn.authorize svg { fill: var(--primary) !important; }
+    #swagger-ui .swagger-ui .btn.authorize:hover svg { fill: #fff !important; }
+
+    /* opblock tags */
+    #swagger-ui .swagger-ui .opblock-tag {
+      background: var(--bg-card) !important; border: 1px solid var(--border) !important;
+      border-radius: 8px !important; margin-bottom: 8px !important;
+      padding: 12px 16px !important;
+    }
+    #swagger-ui .swagger-ui .opblock-tag:hover { border-color: var(--primary) !important; }
+    #swagger-ui .swagger-ui .opblock-tag a,
+    #swagger-ui .swagger-ui .opblock-tag .nostyle span { color: var(--text) !important; font-weight: 700 !important; }
+    #swagger-ui .swagger-ui .opblock-tag small { color: var(--text-muted) !important; }
+    #swagger-ui .swagger-ui .opblock-tag svg { fill: var(--primary) !important; }
+
+    /* operation blocks */
+    #swagger-ui .swagger-ui .opblock {
+      border-radius: 8px !important; border: 1px solid var(--border) !important;
+      margin-bottom: 6px !important; box-shadow: none !important;
+      background: var(--bg-card) !important;
+    }
+    #swagger-ui .swagger-ui .opblock.is-open .opblock-summary {
+      border-bottom: 1px solid var(--border) !important; border-radius: 8px 8px 0 0 !important;
+    }
+    #swagger-ui .swagger-ui .opblock .opblock-body { background: var(--bg) !important; border-radius: 0 0 8px 8px !important; }
+    #swagger-ui .swagger-ui .opblock .opblock-summary-path { color: var(--text) !important; font-weight: 600 !important; }
+    #swagger-ui .swagger-ui .opblock .opblock-summary-description { color: var(--text-muted) !important; font-size: 0.8rem !important; }
+
+    #swagger-ui .swagger-ui .opblock.opblock-get    .opblock-summary { background: rgba(97,175,254,0.06) !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-post   .opblock-summary { background: rgba(73,204,144,0.06) !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-put    .opblock-summary { background: rgba(252,161,48,0.06) !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-delete .opblock-summary { background: rgba(249,62,62,0.06) !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-patch  .opblock-summary { background: rgba(80,227,194,0.06) !important; }
+
+    #swagger-ui .swagger-ui .opblock.opblock-get    .opblock-summary-method { background: var(--info) !important; border-radius: 5px !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-post   .opblock-summary-method { background: var(--success) !important; border-radius: 5px !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-put    .opblock-summary-method { background: var(--warning) !important; border-radius: 5px !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-delete .opblock-summary-method { background: var(--danger) !important; border-radius: 5px !important; }
+    #swagger-ui .swagger-ui .opblock.opblock-patch  .opblock-summary-method { background: #50e3c2 !important; border-radius: 5px !important; }
+
+    /* section header */
+    #swagger-ui .swagger-ui .opblock-section-header { background: var(--bg-card2) !important; border-bottom: 1px solid var(--border) !important; }
+    #swagger-ui .swagger-ui .opblock-section-header h4 { color: var(--text) !important; font-size: 0.78rem !important; font-weight: 700 !important; text-transform: uppercase !important; }
+
+    /* params */
+    #swagger-ui .swagger-ui table thead tr td,
+    #swagger-ui .swagger-ui table thead tr th { color: var(--primary) !important; border-bottom: 1px solid var(--border) !important; font-size: 0.72rem !important; text-transform: uppercase !important; }
+    #swagger-ui .swagger-ui .parameter__name { color: var(--text) !important; font-weight: 600 !important; }
+    #swagger-ui .swagger-ui .parameter__type { color: var(--primary) !important; font-size: 0.78rem !important; }
+    #swagger-ui .swagger-ui .parameter__in { color: #50e3c2 !important; font-size: 0.7rem !important; font-style: italic !important; }
+    #swagger-ui .swagger-ui .parameters-col_description p,
+    #swagger-ui .swagger-ui .renderedMarkdown p { color: var(--text-muted) !important; }
+    #swagger-ui .swagger-ui .required { color: var(--danger) !important; }
+    #swagger-ui .swagger-ui table tbody tr td { border-bottom: 1px solid var(--bg-card2) !important; }
+    #swagger-ui .swagger-ui label { color: var(--text-muted) !important; }
+    #swagger-ui .swagger-ui .tab li { color: var(--text-muted) !important; }
+
+    /* inputs */
+    #swagger-ui .swagger-ui input[type=text],
+    #swagger-ui .swagger-ui input[type=password],
+    #swagger-ui .swagger-ui input[type=search],
+    #swagger-ui .swagger-ui textarea,
+    #swagger-ui .swagger-ui select {
+      background: var(--bg-card2) !important; color: var(--text) !important;
+      border: 1px solid var(--border) !important; border-radius: 6px !important;
+      padding: 6px 10px !important;
+    }
+    #swagger-ui .swagger-ui input:focus,
+    #swagger-ui .swagger-ui textarea:focus { border-color: var(--primary) !important; outline: none !important; }
+
+    /* buttons */
+    #swagger-ui .swagger-ui .btn { border-radius: 6px !important; font-weight: 600 !important; }
+    #swagger-ui .swagger-ui .btn.execute { background: var(--primary) !important; color: #fff !important; border-color: var(--primary) !important; }
+    #swagger-ui .swagger-ui .btn.execute:hover { background: var(--primary-dark) !important; }
+    #swagger-ui .swagger-ui .btn.cancel { background: transparent !important; color: var(--danger) !important; border-color: var(--danger) !important; }
+    #swagger-ui .swagger-ui .btn.try-out__btn { background: transparent !important; color: #50e3c2 !important; border-color: #50e3c2 !important; }
+
+    /* responses */
+    #swagger-ui .swagger-ui .responses-inner { background: var(--bg) !important; }
+    #swagger-ui .swagger-ui .response { background: var(--bg-card) !important; border-radius: 6px !important; margin-bottom: 6px !important; }
+    #swagger-ui .swagger-ui .response-col_status { color: var(--text) !important; font-weight: 700 !important; }
+    #swagger-ui .swagger-ui .response-col_description p { color: var(--text-muted) !important; }
+
+    /* code blocks */
+    #swagger-ui .swagger-ui .highlight-code,
+    #swagger-ui .swagger-ui .microlight {
+      background: #0A0910 !important; border-radius: 6px !important;
+      border: 1px solid var(--border) !important;
+    }
+    #swagger-ui .swagger-ui .highlight-code pre { color: var(--text-muted) !important; }
+    #swagger-ui .swagger-ui .copy-to-clipboard { background: var(--bg-card2) !important; border: 1px solid var(--border) !important; border-radius: 4px !important; }
+
+    /* models */
+    #swagger-ui .swagger-ui section.models {
+      background: var(--bg-card) !important; border: 1px solid var(--border) !important;
+      border-radius: 8px !important; margin-top: 24px !important;
+    }
+    #swagger-ui .swagger-ui section.models h4 { color: var(--text) !important; }
+    #swagger-ui .swagger-ui .model-container { background: var(--bg) !important; border: 1px solid var(--border) !important; border-radius: 6px !important; }
+    #swagger-ui .swagger-ui .model-title { color: var(--text) !important; font-weight: 700 !important; }
+    #swagger-ui .swagger-ui .prop-type { color: var(--primary) !important; }
+    #swagger-ui .swagger-ui .prop-format { color: #50e3c2 !important; }
+    #swagger-ui .swagger-ui table.model tr.property-row td { color: var(--text-muted) !important; border-color: var(--bg-card2) !important; }
+
+    /* auth modal */
+    #swagger-ui .swagger-ui .dialog-ux .modal-ux { background: var(--bg-card) !important; border: 1px solid var(--border) !important; border-radius: 10px !important; }
+    #swagger-ui .swagger-ui .dialog-ux .modal-ux-header { background: #0A0910 !important; border-bottom: 1px solid var(--border) !important; border-radius: 10px 10px 0 0 !important; }
+    #swagger-ui .swagger-ui .dialog-ux .modal-ux-header h3 { color: var(--text) !important; }
+    #swagger-ui .swagger-ui .dialog-ux .modal-ux-content p,
+    #swagger-ui .swagger-ui .dialog-ux .modal-ux-content h4 { color: var(--text-muted) !important; }
+    #swagger-ui .swagger-ui .auth-container { border-bottom: 1px solid var(--border) !important; }
+    #swagger-ui .swagger-ui .scopes h2 { color: var(--text) !important; }
+
+    /* filter */
+    #swagger-ui .swagger-ui .filter-container .operation-filter-input {
+      background: var(--bg-card) !important; color: var(--text) !important;
+      border: 1px solid var(--border) !important; border-radius: 6px !important;
+    }
+
+    /* errors */
+    #swagger-ui .swagger-ui .errors-wrapper { background: rgba(249,62,62,0.08) !important; border: 1px solid var(--danger) !important; border-radius: 6px !important; }
+
+    /* ── Page info header ── */
+    #page-header {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    #page-header h1 { font-size: 1.6rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    #page-header p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+    .header-meta { display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .meta-pill {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+      border: 1px solid var(--border); color: var(--text-muted);
+    }
+    .meta-pill.green { border-color: rgba(73,204,144,0.4); color: var(--success); background: rgba(73,204,144,0.08); }
+    .meta-pill.purple { border-color: rgba(108,99,255,0.4); color: var(--primary); background: rgba(108,99,255,0.08); }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div id="topbar">
+    <a class="topbar-brand" href="/">
+      <div class="topbar-logo">Do It <span>Cha</span></div>
+      <div class="topbar-badge">API Docs</div>
+    </a>
+    <div class="topbar-actions">
+      <input type="search" id="search-input" placeholder="Search endpoints..." />
+      <a href="/admin-logout" class="btn-logout">Logout</a>
+    </div>
+  </div>
+
+  <!-- Layout -->
+  <div id="layout">
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Endpoints</div>
+        <div id="tag-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main id="main">
+      <div id="page-header">
+        <h1>Do It Cha API</h1>
+        <p>REST API for Do It Cha — a productivity app with personal task management and amigurumi price estimation.</p>
+        <div class="header-meta">
+          <span class="meta-pill purple">OpenAPI 3.0</span>
+          <span class="meta-pill purple">v1.0.0</span>
+          <span class="meta-pill green">Live</span>
+          <span class="meta-pill">Base URL: /api</span>
+        </div>
+      </div>
+      <div id="swagger-ui"></div>
+    </main>
+
+  </div>
+
+  <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+  <script>
+    const ui = SwaggerUIBundle({
+      url: '/admin/swagger.json',
+      dom_id: '#swagger-ui',
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+      layout: 'BaseLayout',
+      persistAuthorization: true,
+      displayRequestDuration: true,
+      filter: false,
+      defaultModelsExpandDepth: 1,
+      defaultModelExpandDepth: 1,
+      tryItOutEnabled: false,
+      onComplete: () => buildSidebar(),
+    });
+
+    // ── Sidebar builder ──────────────────────────────────────────────
+    function buildSidebar() {
+      fetch('/admin/swagger.json')
+        .then(r => r.json())
+        .then(spec => {
+          const tagList = document.getElementById('tag-list');
+          tagList.innerHTML = '';
+
+          // Group paths by tag
+          const groups = {};
+          const paths = spec.paths || {};
+          Object.entries(paths).forEach(([path, methods]) => {
+            Object.entries(methods).forEach(([method, op]) => {
+              if (!['get','post','put','patch','delete'].includes(method)) return;
+              const tag = (op.tags && op.tags[0]) || 'Other';
+              if (!groups[tag]) groups[tag] = [];
+              groups[tag].push({ method, path, summary: op.summary || path });
+            });
+          });
+
+          Object.entries(groups).forEach(([tag, endpoints]) => {
+            const group = document.createElement('div');
+            group.className = 'tag-group';
+
+            const btn = document.createElement('button');
+            btn.className = 'tag-btn';
+            btn.innerHTML = `<span>${tag}</span><span class="tag-count">${endpoints.length}</span>`;
+            btn.onclick = () => {
+              const list = group.querySelector('.endpoint-list');
+              const isOpen = list.classList.toggle('open');
+              btn.classList.toggle('active', isOpen);
+              if (isOpen) scrollToTag(tag);
+            };
+
+            const list = document.createElement('div');
+            list.className = 'endpoint-list';
+
+            endpoints.forEach(({ method, path, summary }) => {
+              const item = document.createElement('button');
+              item.className = 'endpoint-item';
+              item.innerHTML = `<span class="method-badge method-${method}">${method}</span><span>${summary}</span>`;
+              item.onclick = () => {
+                document.querySelectorAll('.endpoint-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                scrollToOperation(method, path);
+              };
+              list.appendChild(item);
+            });
+
+            group.appendChild(btn);
+            group.appendChild(list);
+            tagList.appendChild(group);
+          });
+        });
+    }
+
+    function scrollToTag(tag) {
+      const els = document.querySelectorAll('#swagger-ui .opblock-tag');
+      for (const el of els) {
+        const text = el.querySelector('a, .nostyle span');
+        if (text && text.textContent.trim().toLowerCase() === tag.toLowerCase()) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+      }
+    }
+
+    function scrollToOperation(method, path) {
+      const blocks = document.querySelectorAll(`#swagger-ui .opblock.opblock-${method}`);
+      for (const block of blocks) {
+        const pathEl = block.querySelector('.opblock-summary-path');
+        if (pathEl && pathEl.textContent.trim().replace(/\s+/g, '') === path.replace(/\s+/g, '')) {
+          // open it if collapsed
+          if (!block.classList.contains('is-open')) {
+            block.querySelector('.opblock-summary')?.click();
+          }
+          block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+      }
+    }
+
+    // ── Search ────────────────────────────────────────────────────────
+    document.getElementById('search-input').addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.endpoint-item').forEach(item => {
+        const match = item.textContent.toLowerCase().includes(q);
+        item.style.display = match ? '' : 'none';
+      });
+      // auto-open groups that have visible items
+      document.querySelectorAll('.tag-group').forEach(group => {
+        const visible = Array.from(group.querySelectorAll('.endpoint-item')).some(i => i.style.display !== 'none');
+        const list = group.querySelector('.endpoint-list');
+        const btn = group.querySelector('.tag-btn');
+        if (q.length > 0) {
+          list.classList.toggle('open', visible);
+          btn.classList.toggle('active', visible);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

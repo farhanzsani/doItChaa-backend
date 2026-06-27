@@ -1,0 +1,172 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ────────────────────────────────────────────
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+}
+
+enum Complexity {
+  EASY
+  MEDIUM
+  HARD
+  CUSTOM
+}
+
+// ─── Models ───────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  categories       Category[]
+  tasks            Task[]
+  priceEstimates   PriceEstimateHistory[]
+  notes            Note[]
+  materials        Material[]
+  businessSettings BusinessSettings?
+  hppCalculations  HppCalculation[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  createdAt DateTime @default(now())
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks Task[]
+}
+
+model Task {
+  id                String     @id @default(cuid())
+  title             String
+  description       String?
+  priority          Priority   @default(LOW)
+  status            TaskStatus @default(PENDING)
+  deadline          DateTime?
+  categoryId        String?
+  userId            String
+  estimateHistoryId String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category        Category?             @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  estimateHistory PriceEstimateHistory? @relation(fields: [estimateHistoryId], references: [id], onDelete: SetNull)
+  notes           Note[]
+}
+
+model PriceEstimateHistory {
+  id                      String     @id @default(cuid())
+  productName             String
+  sizeCm                  Float
+  complexity              Complexity
+  estimatedHours          Float
+  estimatedMaterialCost   Int
+  minimumRecommendedPrice Int
+  maximumRecommendedPrice Int
+  userId                  String
+  createdAt               DateTime   @default(now())
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks Task[]
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  taskId    String?
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task Task? @relation(fields: [taskId], references: [id], onDelete: Cascade)
+}
+
+model Material {
+  id          String   @id @default(cuid())
+  name        String
+  unit        String   // satuan: kg, meter, pcs, dll
+  price       Int      // harga per unit
+  stock       Float    @default(0)
+  description String?  @db.Text
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hppCalculations   HppCalculation[]    @relation("HppCalculationMaterials")
+  hppMaterialUsages HppMaterialUsage[]
+}
+
+model BusinessSettings {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  profitMarginMin   Float    @default(50)  // dalam persen
+  profitMarginMax   Float    @default(100) // dalam persen
+  taxPercentage     Float    @default(0)   // dalam persen
+  laborCostPerHour  Int      @default(15000)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model HppCalculation {
+  id                      String   @id @default(cuid())
+  productName             String
+  totalMaterialCost       Int
+  totalLaborCost          Int
+  estimatedHours          Float
+  totalHpp                Int      // total material + labor
+  profitMarginPercentage  Float    // profit yang dipakai
+  taxPercentage           Float    // pajak yang dipakai
+  sellingPriceBeforeTax   Int      // harga jual sebelum pajak
+  taxAmount               Int      // jumlah pajak
+  finalSellingPrice       Int      // harga jual final (sudah termasuk pajak)
+  userId                  String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  materials     Material[]         @relation("HppCalculationMaterials")
+  materialUsage HppMaterialUsage[]
+}
+
+model HppMaterialUsage {
+  id               String   @id @default(cuid())
+  hppCalculationId String
+  materialId       String
+  quantity         Float    // jumlah bahan yang dipakai
+  unitPrice        Int      // harga per unit saat itu
+  totalPrice       Int      // quantity × unitPrice
+  createdAt        DateTime @default(now())
+
+  hppCalculation HppCalculation @relation(fields: [hppCalculationId], references: [id], onDelete: Cascade)
+  material       Material       @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@unique([hppCalculationId, materialId])
+}
